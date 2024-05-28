@@ -1,0 +1,158 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div class="title">Pedidos</div>
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" (click)="openCreateDialog()">
+      <mat-icon>add</mat-icon> Cadastrar Pessoa
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<table mat-table [dataSource]="peoples" matSort>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
+    <td mat-cell *matCellDef="let row">{{ row.nome }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="surname">
+    <th mat-header-cell *matHeaderCellDef>Sobrenome</th>
+    <td mat-cell *matCellDef="let row">{{ row.sobrenome }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef>Idade</th>
+    <td mat-cell *matCellDef="let row">{{ row.idade }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="occupation">
+    <th mat-header-cell *matHeaderCellDef>Profissão</th>
+    <td mat-cell *matCellDef="let row">{{ row.profissao }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Ações</th>
+    <td mat-cell *matCellDef="let row">
+      <button
+        mat-button
+        [matMenuTriggerFor]="menu"
+        (click)="$event.stopPropagation()"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openUpdateDialog(row)">Atualizar</button>
+        <button
+          mat-menu-item
+          style="color: red"
+          (click)="openRemoveDialog(row)"
+        >
+          Excluir
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="openMoreDetailsDialog(row)"
+  ></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="5">Nenhuma pessoa encontrada</td>
+  </tr>
+</table>
+
+<!-- <div class="container p-5">
+  <div class="row">
+    @if (formulario) {
+    <div class="col-6 border boder-light rounded p-5 shadow">
+      <h6>{{ tituloFormulario }}</h6>
+      <hr />
+      <form [formGroup]="formulario()" (ngSubmit)="EnviarFormulario()">
+        <div class="form-group">
+          <label>Nome</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="nome"
+          />
+        </div>
+        <div class="form-group">
+          <label>Sobrenome</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="sobrenome"
+          />
+        </div>
+        <div class="form-group">
+          <label>Idade</label>
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            formControlName="idade"
+          />
+        </div>
+        <div class="form-group">
+          <label>Profissão</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="profissao"
+          />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Salvar
+              </button>
+            </div>
+            <div class="pl-1">
+              <button
+                type="button"
+                class="btn btn-sm btn-light"
+                (click)="Voltar()"
+              >
+                Voltar
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    }
+  </div>
+</div>
+}
+
+<ng-template #conteudoModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Confirmação de Exclusão</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">Prosseguir com a exclusão do(a) {{ nomePessoa }}</div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modalRef.hide()">
+      Não
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="ExcluirPessoa(pessoaId)"
+    >
+      Sim
+    </button>
+  </div>
+</ng-template> -->

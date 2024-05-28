@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Remover pessoa?</h1>
+<div mat-dialog-content>
+  <p>Tem certeza que deseja remover {{ data.name }}?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat--raised-button color="warn" (click)="remove()" cdkFocusInitial>
+    Remover
+  </button>
+</div>
